@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marcelio | Designer gráfico e editor de vídeo</title>
+<meta name="description" content="Portfolio de Marcelio, designer gráfico e editor de vídeo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fbfbfc;--ink:#1d1f23;--muted:#666b73;--line:#e2e4e8;--ph:#eceef1;--card:#f3f4f6;--h:min(19rem,38vh);color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--paper:#16181b;--ink:#eceef1;--muted:#9a9fa8;--line:#2b2e33;--ph:#22252a;--card:#1d2023}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{background:var(--paper);color:var(--ink);font:400 1.0625rem/1.65 "Instrument Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-underline-offset:.2em}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.wrap{max-width:72rem;margin:0 auto;padding:0 1.5rem}
+header{position:sticky;top:0;background:var(--paper);border-bottom:1px solid var(--line);z-index:20}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:3.5rem}
+header a{text-decoration:none;font-weight:500}
+nav{display:flex;gap:1.5rem;font-size:.95rem}
+nav a{color:var(--muted)}nav a:hover{color:var(--ink)}
+.hero{min-height:calc(100vh - 3.5rem - 5rem);display:flex;flex-direction:column;justify-content:center;padding:4rem 0 3rem}
+.hero h1{font-weight:500;font-size:clamp(4rem,19vw,17rem);line-height:.9;letter-spacing:-.05em;cursor:default;user-select:none}
+.hero h1 span{display:inline-block;transition:transform .25s cubic-bezier(.2,.7,.2,1);will-change:transform}
+.hero p{margin-top:2rem;font-size:1.25rem;color:var(--muted);max-width:30rem}
+.marquee{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:1.1rem 0}
+.track{display:inline-flex;animation:slide 28s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font-size:1.5rem;letter-spacing:-.02em;padding:0 2rem}
+.track span::after{content:"";display:inline-block;width:.4rem;height:.4rem;border-radius:50%;background:var(--muted);margin-left:4rem;vertical-align:middle}
+@keyframes slide{to{transform:translateX(-50%)}}
+section{padding:5rem 0}
+h2{font-weight:500;font-size:1.5rem;letter-spacing:-.02em;margin-bottom:2rem}
+#stack{padding-bottom:6rem}
+.card{position:sticky;top:calc(4.5rem + var(--i) * .9rem);background:var(--card);border:1px solid var(--line);border-radius:1.25rem;padding:1.5rem;margin-bottom:6rem;box-shadow:0 -12px 30px -18px rgba(0,0,0,.25)}
+.card:last-child{margin-bottom:0}
+.chead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.25rem}
+.chead h3{font-weight:500;font-size:1.5rem;letter-spacing:-.02em}
+.chead span{color:var(--muted);font-size:.9rem}
+.strip{display:flex;gap:1rem;overflow-x:auto;padding-bottom:.75rem;scrollbar-width:thin}
+.it{flex:none;display:block;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left}
+button.it{cursor:pointer}
+.thumb{display:grid;place-items:center;height:var(--h);width:auto;aspect-ratio:4/3;object-fit:cover;background:var(--ph);border-radius:.6rem;color:var(--muted);font-size:.9rem;overflow:hidden}
+.thumb.v{aspect-ratio:9/16}.thumb.h{aspect-ratio:16/9}
+img.thumb:not(.v):not(.h){aspect-ratio:auto}
+.thumb iframe{width:100%;height:100%;border:0}
+.cap{margin-top:.5rem;font-size:.95rem}
+.cap a{color:var(--muted);margin-left:.5rem}
+.row{display:grid;grid-template-columns:11rem 1fr;gap:.5rem 2rem;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+.row:first-of-type{padding-top:0}
+.row .when{color:var(--muted);font-size:.95rem}
+.row b{font-weight:500}
+.row span{display:block;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:3rem}
+.two h3{font-weight:500;font-size:1.05rem;margin-bottom:.5rem}
+.two p{color:var(--muted)}
+.text{max-width:38rem}
+.contact a{display:inline-block;margin-right:1.5rem}
+footer{padding:2.5rem 0;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+dialog{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh}
+dialog::backdrop{background:rgba(0,0,0,.85)}
+dialog img{display:block;max-width:94vw;max-height:90vh;object-fit:contain}
+@media (max-width:640px){.hero{min-height:auto;padding:3rem 0 2rem}.row,.two{grid-template-columns:1fr}nav{gap:1rem;font-size:.85rem}.card{padding:1rem}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track{animation:none}.hero h1 span{transition:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="#inicio">Marcelio</a>
+<nav><a href="#trabalhos">Trabalhos</a><a href="#experiencia">Experiência</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></nav></div></header>
+
+<main>
+<div class="wrap hero" id="inicio">
+<h1 id="nome" aria-label="Marcelio">Marcelio</h1>
+<p>Designer gráfico e editor de vídeo. Aqui está uma seleção dos meus trabalhos.</p>
+</div>
+
+<div class="marquee" aria-label="Plataformas em que trabalho"><div class="track" id="track"></div></div>
+
+<section id="trabalhos"><div class="wrap">
+<h2>Trabalhos</h2>
+<div id="stack"></div>
+</div></section>
+
+<section id="experiencia" style="border-top:1px solid var(--line)"><div class="wrap">
+<h2>Experiência</h2>
+<!-- Copie um bloco "row" para cada experiência -->
+<div class="row"><div class="when">2022 até hoje</div><div><b>Designer gráfico e editor de vídeo</b><span>Freelancer</span>Descreva em uma ou duas frases o que você fazia e entregava.</div></div>
+<div class="row"><div class="when">2019 a 2022</div><div><b>Cargo</b><span>Nome da empresa</span>Descreva em uma ou duas frases o que você fazia e entregava.</div></div>
+<div class="two">
+<div><h3>Ferramentas</h3><p>Photoshop, Illustrator, Premiere Pro, After Effects</p></div>
+<div><h3>Idiomas</h3><p>Português (nativo), Inglês (nível)</p></div>
+</div>
+</div></section>
+
+<section id="sobre" style="border-top:1px solid var(--line)"><div class="wrap">
+<h2>Sobre</h2>
+<p class="text">Escreva aqui um texto curto sobre você: há quanto tempo trabalha com design e vídeo, que tipo de projeto gosta de fazer e como é trabalhar com você.</p>
+</div></section>
+
+<section id="contato" style="border-top:1px solid var(--line)"><div class="wrap">
+<h2>Contato</h2>
+<p class="contact"><a href="mailto:seuemail@exemplo.com">seuemail@exemplo.com</a><a href="https://instagram.com/seuusuario">Instagram</a><a href="https://linkedin.com/in/seuusuario">LinkedIn</a></p>
+</div></section>
+</main>
+
+<footer><div class="wrap">© <span id="ano"></span> Marcelio</div></footer>
+
+<dialog id="lb"><img alt=""></dialog>
+
+<script>
+/* ===== EDITE AQUI =====
+   PLATAFORMAS: lista que passa no carrossel abaixo do nome (troque pelas suas).
+   artes:     src = caminho da imagem, ex.: "artes/arte-01.jpg"
+   impressos: src = imagem de prévia, pdf = arquivo, ex.: "impressos/cartaz-01.pdf"
+   motion e videos: yt = código do vídeo no YouTube (o que vem depois de v= ou de /shorts/ no link)
+                    v:true = vídeo vertical (Reels/Shorts). Sem v:true, o vídeo é horizontal.
+   Para adicionar um item, copie uma linha. Deixe vazio para mostrar o espaço reservado. */
+const PLATAFORMAS = ["Instagram","Reels","YouTube","TikTok","Behance"];
+const D = {
+  "Artes":     [{t:"Título da arte",src:""},{t:"Título da arte",src:""},{t:"Título da arte",src:""},{t:"Título da arte",src:""},{t:"Título da arte",src:""},{t:"Título da arte",src:""}],
+  "Impressos": [{t:"Título do impresso",src:"",pdf:""},{t:"Título do impresso",src:"",pdf:""},{t:"Título do impresso",src:"",pdf:""}],
+  "Motion":    [{t:"Animação",yt:"",v:true},{t:"Animação",yt:"",v:true},{t:"Animação",yt:""}],
+  "Vídeos":    [{t:"Vídeo",yt:"",v:true},{t:"Vídeo",yt:"",v:true},{t:"Vídeo",yt:""}]
+};
+/* ===== FIM ===== */
+
+const el=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt)e.textContent=txt;return e};
+const lb=document.getElementById("lb");
+
+/* carrossel de plataformas (a lista aparece duas vezes para o loop ficar contínuo) */
+const track=document.getElementById("track");
+for(let n=0;n<4;n++)PLATAFORMAS.forEach(p=>track.append(el("span",null,p)));
+
+/* texto do nome reage ao mouse */
+const nome=document.getElementById("nome"),hero=nome.parentElement;
+const letras=[...nome.textContent].map(ch=>{const s=el("span",null,ch);s.setAttribute("aria-hidden","true");return s});
+nome.replaceChildren(...letras);
+if(matchMedia("(hover:hover)").matches&&!matchMedia("(prefers-reduced-motion:reduce)").matches){
+  const R=240;
+  hero.addEventListener("mousemove",e=>{
+    letras.forEach(s=>{
+      const r=s.getBoundingClientRect(),dx=r.left+r.width/2-e.clientX,dy=r.top+r.height/2-e.clientY,d=Math.hypot(dx,dy)||1;
+      const f=Math.max(0,1-d/R);
+      s.style.transform=f?`translate(${dx/d*f*45}px,${dy/d*f*45}px) scale(${1+f*.18})`:"";
+    });
+  });
+  hero.addEventListener("mouseleave",()=>letras.forEach(s=>s.style.transform=""));
+}
+
+/* cartões empilhados */
+function thumb(src,alt,cls,fb){
+  if(!src)return el("div","thumb "+cls,fb||"Em breve");
+  const i=el("img","thumb "+cls);i.src=src;i.alt=alt;i.loading="lazy";return i;
+}
+function item(it){
+  let b;
+  if("yt" in it){
+    const cls=it.v?"v":"h";
+    b=el("button","it");b.type="button";
+    b.append(thumb(it.yt&&"https://i.ytimg.com/vi/"+it.yt+"/hqdefault.jpg",it.t,cls,"Vídeo em breve"));
+    if(it.yt)b.onclick=()=>{
+      const f=el("iframe");f.src="https://www.youtube-nocookie.com/embed/"+it.yt+"?autoplay=1";
+      f.allow="autoplay; fullscreen; picture-in-picture";f.allowFullscreen=true;f.title=it.t;
+      const w=el("div","thumb "+cls);w.append(f);b.firstChild.replaceWith(w);b.onclick=null;
+    };
+  }else if("pdf" in it){
+    b=el("div","it");b.append(thumb(it.src,it.t,""));
+    const c=el("div","cap",it.t);
+    if(it.pdf){const a=el("a",null,"Abrir PDF");a.href=it.pdf;a.target="_blank";a.rel="noopener";c.append(a)}
+    b.append(c);
+  }else{
+    b=el("button","it");b.type="button";b.append(thumb(it.src,it.t,""));
+    if(it.src)b.onclick=()=>{lb.firstChild.src=it.src;lb.firstChild.alt=it.t;lb.showModal()};
+  }
+  return b;
+}
+Object.entries(D).forEach(([cat,items],i)=>{
+  const c=el("article","card");c.style.setProperty("--i",i);
+  const h=el("div","chead");h.append(el("h3",null,cat),el("span",null,items.length+(items.length===1?" item":" itens")));
+  const s=el("div","strip");items.forEach(it=>s.append(item(it)));
+  c.append(h,s);document.getElementById("stack").append(c);
+});
+
+lb.onclick=()=>lb.close();
+document.getElementById("ano").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

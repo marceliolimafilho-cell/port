@@ -277,7 +277,7 @@ nav{font-size:1.3rem;gap:2rem}
 /* ===== seções empilhando ===== */
 .stk{position:sticky;top:0;will-change:transform}
 .stk::after{content:"";position:absolute;inset:0;background:#05040a;opacity:var(--esc,0);pointer-events:none;border-radius:inherit;z-index:30}
-section.stk{margin:0 .75rem;padding:4.5rem 0;background:rgba(15,12,22,.78);border:1px solid rgba(139,92,246,.32);border-bottom:0;border-radius:1.75rem 1.75rem 0 0;box-shadow:0 -24px 60px -20px rgba(0,0,0,.75)}
+section.stk{margin:0 .75rem;padding:4.5rem 0;background:rgba(15,12,22,.88);border:1px solid rgba(139,92,246,.32);border-bottom:0;border-radius:1.75rem 1.75rem 0 0;box-shadow:0 -24px 60px -20px rgba(0,0,0,.75)}
 #trabalhos{padding-bottom:2.5rem}
 #stack{padding-bottom:0}
 .anc{height:0}
@@ -356,6 +356,22 @@ html.trava{overflow:hidden}
 .fs{margin-bottom:.3rem}
 @media (max-width:640px){.hero{min-height:auto;padding:2rem 1.5rem}.row,.two{grid-template-columns:1fr}nav{gap:1rem;font-size:.85rem}.card{padding:1rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track{animation:none}.hero h1 .w span,.frame img{transition:none}}
+
+/* ===== celular e tablet (fica por último para valer sobre as regras acima) ===== */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:2.5rem;padding:2rem 1.25rem 3rem;min-height:auto}
+  .hero h1{font-size:clamp(3.4rem,17vw,6rem)}
+  .toyw{width:100%}
+  .toy{height:28rem}
+  section.stk{background:rgba(15,12,22,.96)}
+}
+@media (max-width:480px){
+  .toy{height:26rem}
+  .tb{width:2.7rem;height:2.7rem}
+  .lay{max-width:100%;left:.4rem;right:.4rem;top:.4rem}
+  .cw{width:86%;margin-top:3rem}
+  .tick span{font-size:1rem}
+}
 </style>
 </head>
 <body>

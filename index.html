@@ -331,7 +331,7 @@ html.trava{overflow:hidden}
 .ytv{width:7rem;accent-color:var(--acc2);align-self:center}
 .ytb button{font-family:"VT323",monospace;font-size:1.15rem;color:#fff;background:rgba(14,12,20,.75);border:1px solid var(--acc2);border-radius:.4rem;padding:.2rem .8rem}
 /* modo edição: imagens e cartões */
-.dr.drg:not(.card){position:relative}
+.dr.drg:not(.card):not(.lang){position:relative}
 /* premiere novo */
 .pcv{position:absolute;inset:0;width:100%;height:100%;display:block}
 .ctl{position:relative}
@@ -372,12 +372,31 @@ html.trava{overflow:hidden}
   .cw{width:86%;margin-top:3rem}
   .tick span{font-size:1rem}
 }
+
+/* seletor de idioma, logo abaixo da barra superior */
+.lang{position:fixed;top:calc(3.5rem + .6rem);right:1.25rem;z-index:19;display:flex;gap:.3rem;padding:.3rem;background:rgba(14,12,20,.9);border:1px solid rgba(139,92,246,.45);border-radius:.6rem;box-shadow:3px 3px 0 #2a1a55}
+.lang button{width:2.3rem;height:1.65rem;padding:.2rem;border:1px solid transparent;border-radius:.35rem;background:none;opacity:.45;transition:opacity .15s}
+.lang button:hover{opacity:.8}
+.lang button.on{opacity:1;border-color:var(--acc2);background:rgba(106,63,209,.25)}
+.lang svg{width:100%;height:100%;display:block;border-radius:2px}
+@media (max-width:640px){.lang{right:.6rem;top:calc(3.5rem + .4rem)}}
+
+/* ferramentas em duas colunas e idiomas embaixo */
+.skills{display:grid;gap:3.5rem;margin-top:4.5rem}
+.skills h3{font-weight:500;font-size:1.05rem;margin-bottom:1.5rem}
+.bars.cols{grid-template-columns:1fr 1fr;column-gap:4rem;row-gap:1.5rem}
+@media (max-width:640px){.bars.cols{grid-template-columns:1fr}}
+/* seletor de idioma centralizado */
+.lang{left:50%;right:auto;transform:translateX(-50%)}
+@media (max-width:640px){.lang{left:50%;right:auto}}
+.lang.dr{transform:translate(calc(-50% + var(--x,0px)),var(--y,0px)) rotate(var(--r,0deg)) scale(var(--s,1))}
 </style>
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
 <div class="crt" aria-hidden="true"></div>
-<header><div class="wrap"><nav><a href="#trabalhos">Trabalhos</a><a href="#experiencia">Experiência</a><a href="#contato">Contato</a><a class="cv" href="curriculo.pdf" download>Currículo</a></nav></div></header>
+<header><div class="wrap"><nav><a href="#trabalhos">Trabalhos</a><a href="#experiencia">Experiência</a><a href="#contato">Contato</a><a class="cv" href="curriculo.pdf" data-pdf="curriculo.pdf" download>Currículo</a></nav></div></header>
+<div class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-l="pt" class="on" aria-label="Português" title="Português"><svg viewBox="0 0 70 50"><rect width="70" height="50" fill="#009c3b"/><polygon points="35,5 65,25 35,45 5,25" fill="#ffdf00"/><circle cx="35" cy="25" r="10" fill="#002776"/></svg></button><button type="button" data-l="en" aria-label="English" title="English"><svg viewBox="0 0 60 30" preserveAspectRatio="none"><clipPath id="lgk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><path d="M0,0v30h60V0z" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#lgk)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg></button></div>
 
 <main>
 <div class="stk" id="s-inicio">
@@ -404,7 +423,7 @@ html.trava{overflow:hidden}
 <section id="experiencia" class="stk"><div class="wrap">
 <h2>Experiência</h2>
 <div class="row"><div class="when">Out 2021 até hoje</div><div><b>Designer e editor de vídeo pleno</b><span>Agência Partem Digital</span><p>Edição de vídeo, motion design, artes para social media e diagramação de impressos para clientes de alta demanda, com foco em organização e otimização do fluxo de trabalho.</p></div></div>
-<div class="two"><div><h3>Ferramentas</h3><div class="bars" id="bf"></div></div><div><h3>Idiomas</h3><div class="bars" id="bi"></div></div></div>
+<div class="skills"><div><h3>Ferramentas</h3><div class="bars cols" id="bf"></div></div><div><h3>Idiomas</h3><div class="bars cols" id="bi"></div></div></div>
 </div></section>
 
 <div class="anc" id="a-contato"></div>
@@ -421,8 +440,8 @@ html.trava{overflow:hidden}
 <div class="exa">
 <a class="go" href="mailto:marcelio.limafilho@hotmail.com">Enviar um e-mail</a>
 <a href="https://www.linkedin.com/in/marcelio-araujo-b24079124/" target="_blank" rel="noopener">LinkedIn</a>
-<a href="curriculo.pdf" download>Baixar currículo</a>
-<a href="portfolio.pdf" target="_blank" rel="noopener">Ver portfólio em PDF</a>
+<a href="curriculo.pdf" data-pdf="curriculo.pdf" download>Baixar currículo</a>
+<a href="portfolio.pdf" data-pdf="portfolio.pdf" target="_blank" rel="noopener">Ver portfólio em PDF</a>
 <small>marcelio.limafilho@hotmail.com</small>
 </div>
 </div>
@@ -465,7 +484,7 @@ html.trava{overflow:hidden}
 const FERRAMENTAS = [ /* sigla, arquivo do logo na pasta icones, nome */
   ["Ps","photoshop.png","Photoshop"],["Ai","illustrator.png","Illustrator"],
   ["Pr","premiere.png","Premiere Pro"],["Ae","aftereffects.png","After Effects"],
-  ["Ca","canva.png","Canva"],["Cc","capcut.png","CapCut"]
+  ["Fg","figma.png","Figma"],["Ca","canva.png","Canva"],["Cc","capcut.png","CapCut"]
 ];
 const IDIOMAS = [["Inglês",75,"Intermediário/Avançado","uk"],["Espanhol",55,"Intermediário","es"]]; /* nome, nível de 0 a 100, rótulo, bandeira */
 const ARTES_FORA = ["37","38"]; /* artes que não aparecem no site */
@@ -508,7 +527,7 @@ document.querySelectorAll(".bar").forEach(b=>io.observe(b));
 
 /* título digitando + troca de fonte ao clicar */
 const tit=document.getElementById("titulo"),dig=document.getElementById("digita");
-const TEXTO="Prazer,\nCeli :)";
+let TEXTO="Prazer,\nCeli :)";
 const FONTES=['"Instrument Sans",system-ui,sans-serif','"Playfair Display",serif','"Space Mono",monospace','"Bebas Neue",sans-serif','"Pacifico",cursive'];
 let k=0,n=0;
 if(calm)dig.textContent=TEXTO;
@@ -931,6 +950,7 @@ if(fine){
   $$(".it").forEach(i=>arrastavel(i));
   const ex=document.querySelector(".exp");arrastavel(ex,ex.querySelector(".exb"));
   arrastavel(document.querySelector(".badge"));
+  arrastavel(document.querySelector(".lang"));
   const bar=document.getElementById("modobar"),mod=document.getElementById("mod");
   const sair=()=>{DR.forEach(e=>e._rst());document.body.classList.remove("modo");bar.hidden=true};
   mod.onclick=()=>{if(document.body.classList.contains("modo"))sair();else{document.body.classList.add("modo");bar.hidden=false}};
@@ -1020,6 +1040,46 @@ Object.entries(D).forEach(([cat,items],i)=>{
   c.append(h,s);document.getElementById("stack").append(c);
 });
 document.getElementById("ano").textContent=new Date().getFullYear();
+
+/* ===== idioma: português / inglês ===== */
+const EN={"+ Camada": "+ Layer", "Arte": "Artwork", "Artes": "Artwork", "Avançado": "Advanced", "Baixar GIF": "Download GIF", "Baixar currículo": "Download résumé", "Brinque com versões simplificadas do Photoshop, do Illustrator e do Premiere.": "Play with simplified versions of Photoshop, Illustrator and Premiere.", "Cidade": "City", "Configurações de exportação": "Export settings", "Conta o que você tem em mente, seja uma campanha, uma identidade, um vídeo ou uma animação.": "Tell me what you have in mind: a campaign, a brand identity, a video or an animation.", "Contato": "Contact", "Currículo": "Résumé", "Design gráfico, vídeo e motion": "Graphic design, video and motion", "Designer e editor de vídeo pleno": "Mid-level designer and video editor", "Designer gráfico e editor de vídeo": "Graphic designer and video editor", "Edição de vídeo, motion design, artes para social media e diagramação de impressos para clientes de alta demanda, com foco em organização e otimização do fluxo de trabalho.": "Video editing, motion design, social media artwork and print layout for high-demand clients, with a focus on organization and workflow optimization.", "Enviar um e-mail": "Send an email", "Espanhol": "Spanish", "Experiência": "Experience", "Faça seu design": "Make your design", "Ferramentas": "Tools", "Foco em entregas de qualidade em projetos de alta demanda, onde organização e otimização do trabalho fazem diferença. Levo cada peça do briefing à entrega final, com padronização e cuidado em cada etapa.": "I focus on quality delivery in high-demand projects, where organization and an optimized workflow make the difference. I take every piece from brief to final delivery, with consistency and care at every step.", "Formato": "Format", "Gosto de aprender coisas novas. Toda ferramenta, técnica ou atalho que eu ainda não domino vira motivo pra continuar estudando, e é isso que me mantém evoluindo no design e no vídeo.": "I love learning new things. Every tool, technique or shortcut I haven't mastered yet becomes a reason to keep studying, and that's what keeps me growing in design and video.", "Idade": "Age", "Idiomas": "Languages", "Imagem": "Image", "Imagens": "Images", "Impressos": "Print", "Inglês": "English", "Intermediário": "Intermediate", "Intermediário/Avançado": "Intermediate/Advanced", "Limpar tudo": "Clear all", "Local": "Location", "Modo edição": "Edit mode", "Mudar o site": "Remix the site", "Nascimento": "Born", "No tempo livre, gosto de futebol, de praticar esportes e de jogar.": "In my free time, I enjoy football, playing sports and gaming.", "Out 2021 até hoje": "Oct 2021 to present", "Projetos": "Projects", "Pronto para exportar": "Ready to export", "Quem sou eu": "Who am I", "Resetar e sair": "Reset and exit", "Segure e arraste qualquer bloco para mudar o site de lugar. A janela dos apps e os cartões se movem pela barra de cima. Um clique rápido continua funcionando normal.": "Hold and drag any block to rearrange the site. The apps window and the cards move by their top bar. A quick click still works as usual.", "Social media, impressos, vídeos e animações": "Social media, print, videos and animations", "Sou apaixonado por tecnologia e gosto de acompanhar o que aparece de novo, principalmente o que muda o jeito de criar.": "I'm passionate about technology and like to keep up with what's new, especially anything that changes the way we create.", "Sou designer gráfico com atuação em edição profissional de vídeo, motion design, arte para social media e diagramação de impressos.": "I'm a graphic designer working across professional video editing, motion design, social media artwork and print layout.", "Tem uma ideia? Vamos dar forma a ela juntos.": "Got an idea? Let's shape it together.", "Trabalhos": "Work", "Ver portfólio em PDF": "View portfolio as PDF", "Voltar ao topo ↑": "Back to top ↑", "Vídeo": "Video", "Vídeos": "Videos", "clique aqui": "click here", "um pouco da minha rotina": "a bit of my routine", "vamos-conversar.mp4": "lets-talk.mp4", "Pausar": "Pause", "Tocar": "Play", "Ativar som": "Sound on", "Sem som": "Mute", "Abrir PDF completo": "Open full PDF", "Abra pelo site": "Open on the website", "Anterior": "Previous", "Próximo": "Next", "Borracha": "Eraser", "Caneta": "Pen", "Cor": "Color", "Cortar": "Razor", "Círculo": "Ellipse", "Escolher a imagem do fundo": "Choose the background image", "Estrela": "Star", "Fechar": "Close", "Ferramentas que domino": "Tools I master", "Foto de Marcélio de Araújo": "Photo of Marcélio de Araújo", "Hexágono": "Hexagon", "Inverter preenchimento e traçado": "Swap fill and stroke", "Mostrar ou ocultar": "Show or hide", "Pincel": "Brush", "Prazer, Celi :)": "Hi, I'm Celi :)", "Preenchimento": "Fill", "Quadrado": "Rectangle", "Salvar": "Save", "Selecionar": "Select", "Sem cor": "None", "Texto": "Text", "Tocar ou pausar": "Play or pause", "Traçado": "Stroke", "Volume": "Volume"};
+const RX=[[/^Arte (\d+)$/,"Artwork $1"],[/^Impresso (\d+)$/,"Print $1"],[/^Imagem (\d+)$/,"Image $1"],[/^Camada (\d+)$/,"Layer $1"],[/^(\d+) itens$/,"$1 items"],[/^(\d+) anos$/,"$1 years old"]];
+const traduz=t=>{if(EN[t])return EN[t];for(const [r,x] of RX)if(r.test(t))return t.replace(r,x);return null};
+let LANG="pt";const ORIG=new WeakMap(),ATRS=["title","aria-label","alt"];
+const fora=n=>{const e=n.nodeType===1?n:n.parentElement;return !e||e.closest("script,style,#digita,.lang")};
+function trTexto(n){
+  if(fora(n))return;const v=n.nodeValue,o=ORIG.get(n);
+  if(LANG==="en"){if(o&&o.en===v)return;const k=v.trim();if(!k)return;const t=traduz(k);if(t){const en=v.replace(k,t);ORIG.set(n,{pt:v,en});n.nodeValue=en}}
+  else if(o&&o.en===v)n.nodeValue=o.pt;
+}
+function trAtrs(e){
+  if(fora(e))return;e._at=e._at||{};
+  ATRS.forEach(a=>{const v=e.getAttribute(a);if(v==null)return;const o=e._at[a];
+    if(LANG==="en"){if(o&&o.en===v)return;const t=traduz(v);if(t){e._at[a]={pt:v,en:t};e.setAttribute(a,t)}}
+    else if(o&&o.en===v)e.setAttribute(a,o.pt)});
+}
+function trTudo(root){
+  if(root.nodeType===3){trTexto(root);return}if(root.nodeType!==1)return;
+  trAtrs(root);root.querySelectorAll("[title],[aria-label],[alt]").forEach(trAtrs);
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode())trTexto(n);
+}
+new MutationObserver(ms=>{if(LANG!=="en")return;ms.forEach(m=>{
+  if(m.type==="characterData")trTexto(m.target);
+  else if(m.type==="attributes")trAtrs(m.target);
+  else m.addedNodes.forEach(trTudo)})}).observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:ATRS});
+const TIT={pt:"Prazer,\nCeli :)",en:"Hi, I'm\nCeli :)"},DOCT={pt:document.title,en:"Marcelio | Graphic designer and video editor"};
+function idioma(l){
+  const fim=n>=TEXTO.length;LANG=l;document.documentElement.lang=l==="en"?"en":"pt-BR";document.title=DOCT[l];
+  TEXTO=TIT[l];if(fim){n=TEXTO.length;dig.textContent=TEXTO}
+  tit.setAttribute("aria-label",l==="en"?"Hi, I'm Celi :)":"Prazer, Celi :)");
+  trTudo(document.body);
+  document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===l));
+  document.querySelectorAll("a[data-pdf]").forEach(a=>{const f=a.dataset.pdf;a.setAttribute("href",l==="en"?f.replace(".pdf","-en.pdf"):f)});
+  try{localStorage.setItem("idioma",l)}catch(e){}
+}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>idioma(b.dataset.l));
+let inicial="pt";try{inicial=localStorage.getItem("idioma")||(/^pt/i.test(navigator.language||"pt")?"pt":"en")}catch(e){}
+if(inicial==="en")setTimeout(()=>idioma("en"),0);
 </script>
 </body>
 </html>

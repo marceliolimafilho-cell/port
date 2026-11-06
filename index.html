@@ -406,6 +406,7 @@ html.trava{overflow:hidden}
 <a class="go" href="mailto:marcelio.limafilho@hotmail.com">Enviar um e-mail</a>
 <a href="https://www.linkedin.com/in/marcelio-araujo-b24079124/" target="_blank" rel="noopener">LinkedIn</a>
 <a href="curriculo.pdf" download>Baixar currículo</a>
+<a href="portfolio.pdf" target="_blank" rel="noopener">Ver portfólio em PDF</a>
 <small>marcelio.limafilho@hotmail.com</small>
 </div>
 </div>
@@ -451,6 +452,7 @@ const FERRAMENTAS = [ /* sigla, arquivo do logo na pasta icones, nome */
   ["Ca","canva.png","Canva"],["Cc","capcut.png","CapCut"]
 ];
 const IDIOMAS = [["Inglês",75,"Intermediário/Avançado","uk"],["Espanhol",55,"Intermediário","es"]]; /* nome, nível de 0 a 100, rótulo, bandeira */
+const ARTES_FORA = ["37","38"]; /* artes que não aparecem no site */
 const pad = n => String(n).padStart(2,"0");
 const seq = (n,f) => Array.from({length:n},(_,i)=>f(pad(i+1)));
 /* Vídeos: basta o código do YouTube (o que vem depois de /shorts/ ou de youtu.be/) */
@@ -458,7 +460,7 @@ const VERTICAIS = ["1Lp1rVSNfh0","f-VxG-beKig","9AbrxTTVzZg","-52G8GRcd_Q","YwUS
 const HORIZONTAIS = ["z1YRLPbPSzo","Zy1WasgL85Q","K5N7N3GAQYk","2TSgDbSer3k"];
 const MOTION = ["kVBvp9muezA","uwSMIqQA8u8","DwvYxv5nWsc","ylA4MOUtyv0","pZJOk-DiNeI","4PKmZGGaA3U","AmG3cqRwSnE","wOrW-a9uYRE","9JZjzxMvx5w","9f8Dx9SiBLI"];
 const D = {
-  "Artes":     seq(42,n=>({t:"Arte "+n,src:`artes/artes-${n}.webp`})),
+  "Artes":     seq(42,n=>({t:"Arte "+n,src:`artes/artes-${n}.webp`})).filter(a=>!ARTES_FORA.some(n=>a.src.endsWith(`-${n}.webp`))),
   "Vídeos":    [...VERTICAIS.map(yt=>({yt,v:true})),...HORIZONTAIS.map(yt=>({yt}))],
   "Motion":    MOTION.map(yt=>({yt,v:true})),
   "Impressos": seq(10,n=>({t:"Impresso "+n,src:`impressos/impressos-${n}.jpg`,pdf:`impressos/impressos-${n}.pdf`}))

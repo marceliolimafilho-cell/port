@@ -495,7 +495,7 @@ const VERTICAIS = ["1Lp1rVSNfh0","f-VxG-beKig","9AbrxTTVzZg","-52G8GRcd_Q","YwUS
 const HORIZONTAIS = ["z1YRLPbPSzo","Zy1WasgL85Q","K5N7N3GAQYk","2TSgDbSer3k"];
 const MOTION = ["kVBvp9muezA","uwSMIqQA8u8","DwvYxv5nWsc","ylA4MOUtyv0","pZJOk-DiNeI","4PKmZGGaA3U","AmG3cqRwSnE","wOrW-a9uYRE","9JZjzxMvx5w","9f8Dx9SiBLI"];
 const D = {
-  "Artes":     seq(42,n=>({t:"Arte "+n,src:`artes/artes-${n}.webp`})).filter(a=>!ARTES_FORA.some(n=>a.src.endsWith(`-${n}.webp`))),
+  "Artes":     seq(53,n=>({t:"Arte "+n,src:`artes/artes-${n}.webp`})).filter(a=>!ARTES_FORA.some(n=>a.src.endsWith(`-${n}.webp`))),
   "Vídeos":    [...VERTICAIS.map(yt=>({yt,v:true})),...HORIZONTAIS.map(yt=>({yt}))],
   "Motion":    MOTION.map(yt=>({yt,v:true})),
   "Impressos": seq(10,n=>({t:"Impresso "+n,src:`impressos/impressos-${n}.jpg`,pdf:`impressos/impressos-${n}.pdf`}))
